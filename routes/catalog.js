@@ -6,6 +6,7 @@ const book_controller = require('../controllers/bookController');
 const bookinstance_controller = require('../controllers/bookinstanceController');
 const author_controller = require('../controllers/authorController');
 const genre_controller = require('../controllers/genreController');
+const author = require('../models/author');
 
 // BOOK ROUTES //
 
@@ -35,3 +36,29 @@ router.get('/book/:id', book_controller.book_detail);
 
 // Get request for all Books
 router.get('/books', book_controller.book_list);
+
+// AUTHOR ROUTES //
+
+// GET request for creating Author. NOTE This must come before route for id (i.e. display author)
+router.get('/author/create', author_controller.author_create_get);
+
+// POST route for creating Author
+router.get('/author/create', author_controller.author_create_post);
+
+// GET request for deleting Author
+router.get('/author/:id/delete', author_controller.author_delete_get);
+
+// POST request for deleting Author
+router.get('/author/:id/delete', author_controller.author_delete_post);
+
+//GET request for updating Author
+router.get('/author/:id/update', author_controller.author_update_get);
+
+// POST request for updating Author 
+router.get('/author/:id/update', author_controller.author_update_post);
+
+// GET request for one Author
+router.get('/author/:id', author_controller.author_detail);
+
+// GET request for all Authors
+router.get('/authors', author_controller.author_list);
