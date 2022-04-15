@@ -6,7 +6,7 @@ const book_controller = require('../controllers/bookController');
 const bookinstance_controller = require('../controllers/bookinstanceController');
 const author_controller = require('../controllers/authorController');
 const genre_controller = require('../controllers/genreController');
-const author = require('../models/author');
+
 
 // BOOK ROUTES //
 
@@ -114,3 +114,5 @@ router.get('/bookinstance/:id', bookinstance_controller.bookinstance_detail);
 
 // GET request for all BookInstances
 router.get('/bookinstances', bookinstance_controller.bookinstance_list);
+
+module.exports = router;
