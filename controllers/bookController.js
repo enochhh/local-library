@@ -19,7 +19,7 @@ exports.index = function(req, res) {
         author_count: function(callback) {
             Author.countDocuments({}, callback);
         },
-        genre_count: function(callback) {
+        genre_count: function(callback) { 
             Genre.countDocuments({}, callback);
         }
     }, function(err, results) {
@@ -29,7 +29,19 @@ exports.index = function(req, res) {
 
 // Display list of all books.
 exports.book_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book list');
+    // Return all book objects, selecting to only return title and author fields
+    Book.find({}, 'title author')
+        // Sort book in alphabetical order
+        .sort({title: 1})
+        // Replace stored book author ID with full author details
+        .populate('author')
+        .exec(function (err, list_books) {
+            if (err) {
+                return next(err);
+            }
+        // Render pug view 'book_list' with the following variables    
+        res.render('book_list', {title: 'Book List', book_list: list_books});
+    });
 };
 
 // Display detail page for a specific book.
