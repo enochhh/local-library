@@ -28,7 +28,7 @@ exports.index = function(req, res) {
 };
 
 // Display list of all books.
-exports.book_list = function(req, res) {
+exports.book_list = function(req, res, next) {
     // Return all book objects, selecting to only return title and author fields
     Book.find({}, 'title author')
         // Sort book in alphabetical order
@@ -39,8 +39,8 @@ exports.book_list = function(req, res) {
             if (err) {
                 return next(err);
             }
-        // Render pug view 'book_list' with the following variables    
-        res.render('book_list', {title: 'Book List', book_list: list_books});
+            // Render pug view 'book_list' with the following variables    
+            res.render('book_list', {title: 'Book List', book_list: list_books});
     });
 };
 
